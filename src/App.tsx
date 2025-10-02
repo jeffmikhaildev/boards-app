@@ -1,61 +1,62 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
-import BoardsList from "./pages/BoardsList";
-import BoardDetails from "./pages/BoardDetails";
-import CardDetails from "./pages/CardDetails";
-import NotFoundPage from "./pages/NotFoundPage";
-import Home from "./pages/Home";
+
+import Login from "./pages/SignIn";
 import About from "./pages/About";
 import Contacts from "./pages/Contacts";
-import Terms from "./pages/Terms";
-import Privacy from "./pages/Privacy";
+import Home from "./pages/Home";
+import BoardsList from "./pages/BoardsList";
+import Register from "./pages/Register";
 
-const routes = [
-	{
-		path: "/",
-		element: <Layout />,
-		errorElement: <NotFoundPage />,
-		children: [
-			{
-				path: "/",
-				element: <Home />,
-			},
-			{
-				path: "/about",
-				element: <About />,
-			},
-			{
-				path: "/contacts",
-				element: <Contacts />,
-			},
-			{
-				path: "/boards",
-				element: <BoardsList />,
-			},
-			{
-				path: "/boards/:boardId",
-				element: <BoardDetails />,
-			},
-			{
-				path: "/boards/:boardId/cardId",
-				element: <CardDetails />,
-			},
-			{
-				path: "/terms",
-				element: <Terms />,
-			},
-			{
-				path: "/privacy",
-				element: <Privacy />,
-			},
-		],
-	},
-];
+function App() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const router = createBrowserRouter(routes);
+	useEffect(() => {
+		const storedLogin = localStorage.getItem("isLoggedIn");
+		setIsLoggedIn(storedLogin === "true");
+	}, []);
 
-const App = () => {
-	return <RouterProvider router={router} />;
-};
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route
+					element={
+						<Layout
+							isLoggedIn={isLoggedIn}
+							setIsLoggedIn={setIsLoggedIn}
+						/>
+					}>
+					<Route
+						path="/"
+						element={<Home />}
+					/>
+					{isLoggedIn && (
+						<Route
+							path="/boards"
+							element={<BoardsList />}
+						/>
+					)}
+					<Route
+						path="/about"
+						element={<About />}
+					/>
+					<Route
+						path="/contacts"
+						element={<Contacts />}
+					/>
+					<Route
+						path="/login"
+						element={<Login setIsLoggedIn={setIsLoggedIn} />}
+					/>
+					<Route
+						path="/register"
+						element={<Register setIsLoggedIn={setIsLoggedIn} />}
+					/>
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
+}
 
 export default App;

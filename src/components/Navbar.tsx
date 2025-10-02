@@ -1,9 +1,40 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-const Navbar = () => {
+interface NavbarProps {
+	isLoggedIn: boolean;
+	setIsLoggedIn: (value: boolean) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [username, setUsername] = useState<string | null>(null);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		// Load username from localStorage if logged in
+		if (isLoggedIn) {
+			const storedUser = localStorage.getItem("username");
+			if (storedUser) setUsername(storedUser);
+		} else {
+			setUsername(null);
+		}
+	}, [isLoggedIn]);
+
+	const handleLogout = () => {
+		setIsLoggedIn(false);
+		localStorage.removeItem("isLoggedIn");
+		localStorage.removeItem("username");
+		setUsername(null);
+		setIsOpen(false);
+		navigate("/");
+	};
+
+	const handleSignIn = () => {
+		navigate("/login");
+		setIsOpen(false);
+	};
 
 	return (
 		<header className="bg-dark border-b border-dark-lighter sticky top-0 z-50">
@@ -16,14 +47,16 @@ const Navbar = () => {
 				</Link>
 
 				{/* Desktop Menu */}
-				<ul className="hidden md:flex gap-6">
-					<li>
-						<Link
-							to="/boards"
-							className="hover:text-primary transition">
-							Boards
-						</Link>
-					</li>
+				<ul className="hidden md:flex gap-6 items-center">
+					{isLoggedIn && (
+						<li>
+							<Link
+								to="/boards"
+								className="hover:text-primary transition">
+								Boards
+							</Link>
+						</li>
+					)}
 					<li>
 						<Link
 							to="/about"
@@ -38,6 +71,30 @@ const Navbar = () => {
 							Contacts
 						</Link>
 					</li>
+
+					{isLoggedIn ? (
+						<>
+							{/* Modern welcome message */}
+							<li className="text-gray-200 text-xs font-medium">
+								Hello, <span className="text-primary ml-1">{username}</span>
+							</li>
+							<li>
+								<button
+									onClick={handleLogout}
+									className="bg-primary text-dark px-4 py-1 rounded hover:opacity-90 transition">
+									Logout
+								</button>
+							</li>
+						</>
+					) : (
+						<li>
+							<button
+								onClick={handleSignIn}
+								className="bg-primary text-dark px-4 py-1 rounded hover:opacity-90 transition">
+								Sign In
+							</button>
+						</li>
+					)}
 				</ul>
 
 				{/* Mobile Hamburger */}
@@ -49,14 +106,16 @@ const Navbar = () => {
 			</nav>
 
 			{/* Mobile Menu */}
-			<div className={`md:hidden fixed top-0 right-0 h-full w-1/3 bg-dark-light border-l border-dark-lighter transform ${isOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out z-40`}>
+			<div className={`md:hidden fixed top-0 right-0 h-full w-1/2 bg-dark-light border-l border-dark-lighter transform ${isOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out z-40`}>
 				<div className="flex flex-col p-6 space-y-6">
-					<Link
-						to="/boards"
-						className="hover:text-primary transition"
-						onClick={() => setIsOpen(false)}>
-						Boards
-					</Link>
+					{isLoggedIn && (
+						<Link
+							to="/boards"
+							className="hover:text-primary transition"
+							onClick={() => setIsOpen(false)}>
+							Boards
+						</Link>
+					)}
 					<Link
 						to="/about"
 						className="hover:text-primary transition"
@@ -69,6 +128,25 @@ const Navbar = () => {
 						onClick={() => setIsOpen(false)}>
 						Contacts
 					</Link>
+
+					{isLoggedIn ? (
+						<>
+							<p className="text-gray-200 font-medium">
+								Welcome, <span className="text-primary">{username}</span>
+							</p>
+							<button
+								onClick={handleLogout}
+								className="bg-primary text-dark px-4 py-2 rounded hover:opacity-90 transition">
+								Logout
+							</button>
+						</>
+					) : (
+						<button
+							onClick={handleSignIn}
+							className="bg-primary text-dark px-4 py-2 rounded hover:opacity-90 transition">
+							Sign In
+						</button>
+					)}
 				</div>
 			</div>
 		</header>

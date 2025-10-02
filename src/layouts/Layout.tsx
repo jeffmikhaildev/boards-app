@@ -2,11 +2,19 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../pages/Footer";
 
-const Layout = () => {
+interface LayoutProps {
+	isLoggedIn: boolean;
+	setIsLoggedIn: (value: boolean) => void;
+}
+
+const Layout: React.FC<LayoutProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 	return (
 		<div className="flex flex-col min-h-screen bg-dark text-gray-100">
 			{/* Navbar */}
-			<Navbar />
+			<Navbar
+				isLoggedIn={isLoggedIn}
+				setIsLoggedIn={setIsLoggedIn}
+			/>
 
 			{/* Main Content */}
 			<main className="flex-grow container mx-auto p-6">
