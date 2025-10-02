@@ -22,12 +22,13 @@ const BoardsList = () => {
 
 	return (
 		<section className="flex flex-col gap-8">
-			<div className="flex flex-col gap-8 500px:flex-row 500px:justify-between">
-				<h1 className="text-5xl font-bold text-primary text-center">MyBoards</h1>
+			<div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+				<h1 className="text-4xl sm:text-5xl font-extrabold text-primary text-center sm:text-left tracking-tight">MyBoards</h1>
+
 				<button
 					onClick={() => setIsCreatingBoard(true)}
-					className="flex items-center justify-center gap-4 p-4 rounded-sm border border-primary font-bold">
-					<Plus className="size-5" /> New Board
+					className="flex items-center justify-center gap-2 px-5 py-3 rounded-md border border-primary text-primary font-semibold hover:bg-primary hover:text-dark transition-colors focus:outline-none">
+					<Plus className="w-5 h-5" /> New Board
 				</button>
 			</div>
 

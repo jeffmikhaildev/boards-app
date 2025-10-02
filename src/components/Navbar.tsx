@@ -6,8 +6,8 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<header className="bg-dark-light shadow-md sticky top-0 z-50">
-			<nav className="container mx-auto flex justify-between items-center py-4 px-6">
+		<header className="bg-dark border-b border-dark-lighter sticky top-0 z-50">
+			<nav className="container mx-auto flex justify-between items-center py-6 px-6">
 				{/* Logo */}
 				<Link
 					to="/"
