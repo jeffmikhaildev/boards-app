@@ -52,7 +52,7 @@ html {
 	--breakpoint-500px: 500px;
 } */
 
-@theme {
+/* @theme {
 	--color-primary: #16a34a;
 	--color-primary-dark: #166534;
 	--color-primary-light: #4ade80;
@@ -62,9 +62,9 @@ html {
 	--color-dark-light: #334155;
 
 	--breakpoint-500px: 500px;
-}
+} */
 
-/* @theme {
+@theme {
 	--color-primary: #8b5cf6;
 	--color-primary-dark: #5b21b6;
 	--color-primary-light: #c4b5fd;
@@ -74,7 +74,7 @@ html {
 	--color-dark-light: #2a2a2a;
 
 	--breakpoint-500px: 500px;
-} */
+}
 
 /* @theme {
 	--color-primary: #f59e0b;

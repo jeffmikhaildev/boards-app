@@ -8,6 +8,7 @@ import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
 import BoardsList from "./pages/BoardsList";
 import Register from "./pages/Register";
+import Settings from "./pages/Settings";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,6 +53,10 @@ function App() {
 					<Route
 						path="/register"
 						element={<Register setIsLoggedIn={setIsLoggedIn} />}
+					/>
+					<Route
+						path="/settings"
+						element={<Settings />}
 					/>
 				</Route>
 			</Routes>

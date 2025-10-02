@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings } from "lucide-react";
 
 interface NavbarProps {
 	isLoggedIn: boolean;
@@ -13,7 +13,6 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		// Load username from localStorage if logged in
 		if (isLoggedIn) {
 			const storedUser = localStorage.getItem("username");
 			if (storedUser) setUsername(storedUser);
@@ -33,6 +32,11 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 
 	const handleSignIn = () => {
 		navigate("/login");
+		setIsOpen(false);
+	};
+
+	const goToSettings = () => {
+		navigate("/settings");
 		setIsOpen(false);
 	};
 
@@ -74,10 +78,21 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 
 					{isLoggedIn ? (
 						<>
-							{/* Modern welcome message */}
+							{/* Welcome message */}
 							<li className="text-gray-200 text-xs font-medium">
 								Hello, <span className="text-primary ml-1">{username}</span>
 							</li>
+
+							{/* Settings icon */}
+							<li>
+								<button
+									onClick={goToSettings}
+									className="p-2 rounded hover:bg-dark-lighter transition"
+									title="Settings">
+									<Settings className="w-5 h-5 text-gray-200" />
+								</button>
+							</li>
+
 							<li>
 								<button
 									onClick={handleLogout}
@@ -132,8 +147,14 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 					{isLoggedIn ? (
 						<>
 							<p className="text-gray-200 font-medium">
-								Welcome, <span className="text-primary">{username}</span>
+								Hello, <span className="text-primary">{username}</span>
 							</p>
+							<button
+								onClick={goToSettings}
+								className="flex items-center gap-2 bg-dark-lighter text-gray-200 px-3 py-2 rounded hover:opacity-90 transition">
+								<Settings className="w-5 h-5" />
+								Settings
+							</button>
 							<button
 								onClick={handleLogout}
 								className="bg-primary text-dark px-4 py-2 rounded hover:opacity-90 transition">
