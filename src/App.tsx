@@ -9,17 +9,18 @@ import Home from "./pages/Home";
 import BoardsList from "./pages/BoardsList";
 import Register from "./pages/Register";
 import Settings from "./pages/Settings";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
 
 	useEffect(() => {
-		const storedLogin = localStorage.getItem("isLoggedIn");
-		setIsLoggedIn(storedLogin === "true");
-	}, []);
+		localStorage.setItem("isLoggedIn", isLoggedIn ? "true" : "false");
+	}, [isLoggedIn]);
 
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<Routes>
 				<Route
 					element={

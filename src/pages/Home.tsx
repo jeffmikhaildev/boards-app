@@ -1,67 +1,176 @@
 import { Link } from "react-router-dom";
 import { Layout, CheckCircle2, Users, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
+
+// Helper component for step cards with hover animation
+const StepCard = ({ step, title, description }: { step: string; title: string; description: string }) => (
+	<div className="bg-dark-lighter p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:bg-dark-light animate-fadeIn flex flex-col items-center justify-center text-center">
+		{/* Step Number */}
+		<div className="flex justify-center items-center w-14 h-14 bg-primary text-dark rounded-full mb-6 font-bold text-lg">{step}</div>
+
+		{/* Title */}
+		<h3 className="text-xl font-semibold text-primary mb-2 transition-colors duration-300 hover:text-primaryLight">{title}</h3>
+
+		{/* Description */}
+		<p className="text-gray-400">{description}</p>
+	</div>
+);
+
+const features = [
+	{
+		title: "Simple",
+		description: "Quickly create boards and tasks with an intuitive drag-and-drop interface. Start organizing in seconds.",
+		iconPath: "M3 7h18M3 12h18M3 17h18",
+	},
+	{
+		title: "Collaborative",
+		description: "Share boards with your team, assign tasks, and track progress together seamlessly in real-time.",
+		iconPath: "M17 20h5v-5M12 12l-8 8V4h8",
+	},
+	{
+		title: "Flexible",
+		description: "Customize your workflow, columns, and board layouts to match personal projects or business needs.",
+		iconPath: "M4 6h16M4 12h8m-8 6h16",
+	},
+];
 
 const Home = () => {
+	const [offsetY, setOffsetY] = useState(0);
+
+	// For simple parallax effect
+	const handleScroll = () => setOffsetY(window.scrollY);
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
 	return (
 		<div className="text-gray-200">
 			{/* Hero Section */}
 			<section className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-12">
-				{/* Left Content */}
 				<div className="flex-1 space-y-6 text-center md:text-left">
+					{/* Heading */}
 					<h1 className="text-4xl md:text-6xl font-bold text-primary leading-tight">Welcome to MyBoards</h1>
-					<p className="text-lg text-gray-400 max-w-lg mx-auto md:mx-0">Organize tasks, manage projects, and collaborate effortlessly. MyBoards gives you a clean and modern kanban experience designed to boost your productivity.</p>
-					<div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+
+					{/* Subtitle */}
+					<p className="text-lg text-gray-400 max-w-lg mx-auto md:mx-0 transition-all duration-500 animate-fadeInUp delay-100">Organize tasks, manage projects, and collaborate effortlessly. MyBoards gives you a clean and modern kanban experience designed to boost your productivity.</p>
+
+					{/* CTA Buttons */}
+					<div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fadeInUp delay-200">
+						{/* Primary Button */}
 						<Link
 							to="/boards"
-							className="bg-primary text-dark font-semibold px-6 py-3 rounded-md hover:opacity-90 transition">
+							className="relative inline-block px-8 py-3 font-semibold rounded-md bg-primary text-dark shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-primaryLight hover:text-dark">
 							Get Started
 						</Link>
+
+						{/* Secondary Button */}
 						<Link
 							to="/about"
-							className="border border-primary px-6 py-3 rounded-md hover:bg-primary hover:text-dark transition">
+							className="relative inline-block px-8 py-3 font-semibold rounded-md border-2 border-primary text-primary shadow hover:shadow-md hover:bg-primary hover:text-dark transform transition-all duration-300 hover:scale-105">
 							Learn More
 						</Link>
 					</div>
 				</div>
 
-				{/* Right Illustration */}
 				<div className="flex-1 flex justify-center">
-					<div className="bg-dark-light rounded-lg shadow-lg p-8 flex flex-col gap-6 max-w-md w-full">
-						<div className="flex items-center gap-3">
-							<Layout className="text-primary w-6 h-6" />
-							<p>Kanban-style Boards</p>
-						</div>
-						<div className="flex items-center gap-3">
-							<Users className="text-primary w-6 h-6" />
-							<p>Team Collaboration</p>
-						</div>
-						<div className="flex items-center gap-3">
-							<CheckCircle2 className="text-primary w-6 h-6" />
-							<p>Track Progress</p>
-						</div>
-						<div className="flex items-center gap-3">
-							<Zap className="text-primary w-6 h-6" />
-							<p>Boost Productivity</p>
-						</div>
+					<div className="bg-dark-light rounded-xl shadow-lg p-8 flex flex-col gap-6 max-w-md w-full">
+						{[
+							{ icon: Layout, text: "Kanban-style Boards" },
+							{ icon: Users, text: "Team Collaboration" },
+							{ icon: CheckCircle2, text: "Track Progress" },
+							{ icon: Zap, text: "Boost Productivity" },
+						].map((item, idx) => (
+							<div
+								key={idx}
+								className="flex items-center gap-3 p-3 rounded-md cursor-pointer bg-dark-lighter hover:bg-primary/10 transition-all duration-300 transform hover:translate-x-2 hover:scale-105 shadow hover:shadow-lg">
+								<item.icon className="text-primary w-6 h-6 transition-colors duration-300" />
+								<p className="text-gray-200 font-medium transition-colors duration-300">{item.text}</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</section>
 
-			{/* Features Section */}
-			<section className="bg-dark-light py-16">
-				<div className="container mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
-					<div>
-						<h3 className="text-xl font-semibold text-primary">Simple</h3>
-						<p className="text-gray-400 mt-2">Create boards and tasks in just a few clicks.</p>
+			{/* Features Section with Parallax */}
+			<section
+				className="relative bg-cover bg-center bg-fixed py-20"
+				style={{ backgroundImage: "url('/path-to-your-parallax-image.jpg')", backgroundPositionY: `${offsetY * 0.5}px` }}>
+				<div className="absolute inset-0 bg-black/50"></div>
+				<div className="relative container mx-auto px-6 text-center text-gray-200">
+					<h2 className="text-3xl md:text-4xl font-bold text-primary mb-12 animate-fadeInUp">Why Choose MyBoards?</h2>
+					<div className="grid md:grid-cols-3 gap-8">
+						{features.map((feature, index) => (
+							<div
+								key={index}
+								className="bg-dark-lighter p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 animate-fadeInUp delay-[${idx * 100}ms]">
+								<div className="flex justify-center mb-4">
+									<svg
+										className="w-10 h-10 text-primary"
+										fill="none"
+										stroke="currentColor"
+										strokeWidth="2"
+										viewBox="0 0 24 24">
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d={feature.iconPath}
+										/>
+									</svg>
+								</div>
+								<h3 className="text-xl font-semibold text-primary mb-2">{feature.title}</h3>
+								<p className="text-gray-400">{feature.description}</p>
+							</div>
+						))}
 					</div>
-					<div>
-						<h3 className="text-xl font-semibold text-primary">Collaborative</h3>
-						<p className="text-gray-400 mt-2">Share boards with your team and work together seamlessly.</p>
+				</div>
+			</section>
+
+			{/* How It Works */}
+			<section className="py-20">
+				<div className="container mx-auto px-6 text-center">
+					<h2 className="text-4xl font-bold text-primary mb-12 animate-fadeInUp">How It Works</h2>
+					<div className="grid md:grid-cols-3 gap-10">
+						<StepCard
+							step="1"
+							title="Create Board"
+							description="Start by creating your board and defining columns for your workflow."
+						/>
+						<StepCard
+							step="2"
+							title="Add Tasks"
+							description="Add tasks, assign them to team members, and set deadlines effortlessly."
+						/>
+						<StepCard
+							step="3"
+							title="Track Progress"
+							description="Monitor task status, move cards across columns, and achieve goals efficiently."
+						/>
 					</div>
-					<div>
-						<h3 className="text-xl font-semibold text-primary">Flexible</h3>
-						<p className="text-gray-400 mt-2">Customize your workflow to fit personal or business needs.</p>
-					</div>
+				</div>
+			</section>
+			{/* Call to Action */}
+			<section className="py-20 text-center relative overflow-hidden">
+				<div className="container mx-auto px-6 relative z-10">
+					{/* Heading */}
+					<h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 animate-fade-in-up">Ready to Get Started?</h2>
+
+					{/* Paragraph */}
+					<p className="text-gray-400 mb-6 animate-fade-in-up delay-100 max-w-xl mx-auto">Sign up today and streamline your workflow with MyBoards.</p>
+
+					{/* Button */}
+					<Link
+						to="/register"
+						className="relative inline-block px-10 py-4 font-semibold rounded-lg bg-primary text-dark shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-primaryLight hover:text-dark animate-fade-in-up">
+						Create Free Account
+					</Link>
+				</div>
+
+				{/* Optional: floating blobs */}
+				<div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+					<div className="absolute w-72 h-72 bg-primary/20 rounded-full -top-16 -left-16 animate-bounce-slow"></div>
+					<div className="absolute w-96 h-96 bg-primary/10 rounded-full -bottom-20 -right-20 animate-bounce-slow animation-delay-2000"></div>
 				</div>
 			</section>
 		</div>

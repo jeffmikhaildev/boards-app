@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, Settings } from "lucide-react";
+import { Menu, X, Settings, LogIn, LogOut } from "lucide-react";
 
 interface NavbarProps {
 	isLoggedIn: boolean;
@@ -96,7 +96,8 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 							<li>
 								<button
 									onClick={handleLogout}
-									className="bg-primary text-dark px-4 py-1 rounded hover:opacity-90 transition">
+									className="flex items-center gap-2 bg-primary text-dark px-4 py-1 rounded hover:opacity-90 transition">
+									<LogOut className="size-4" />
 									Logout
 								</button>
 							</li>
@@ -105,7 +106,8 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 						<li>
 							<button
 								onClick={handleSignIn}
-								className="bg-primary text-dark px-4 py-1 rounded hover:opacity-90 transition">
+								className="flex items-center gap-2 bg-primary text-dark px-4 py-1 rounded hover:opacity-90 transition">
+								<LogIn className="size-4" />
 								Sign In
 							</button>
 						</li>
