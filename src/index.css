@@ -6,7 +6,7 @@ html {
 	font-family: "Poppins", sans-serif;
 }
 
-:root {
+@theme {
 	--color-primary: #ffd700;
 	--color-primary-dark: #b8860b;
 	--color-primary-light: #ffeb3b;
@@ -17,6 +17,17 @@ html {
 
 	--breakpoint-500px: 500px;
 }
+
+/* @theme {
+	--color-primary: #10b981;
+	--color-primary-dark: #059669;
+
+	--color-dark: #1a1a1a;
+	--color-dark-lighter: #2d2d2d;
+	--color-dark-light: #3d3d3d;
+
+	--breakpoint-500px: 500px;
+} */
 
 @layer base {
 	body {
