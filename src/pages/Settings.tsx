@@ -13,17 +13,30 @@ const themes = {
 	lime: { name: "Lime", primary: "#84cc16", primaryDark: "#65a30d", primaryLight: "#bef264" },
 	indigo: { name: "Indigo", primary: "#6366f1", primaryDark: "#4338ca", primaryLight: "#a5b4fc" },
 	rose: { name: "Rose", primary: "#f43f5e", primaryDark: "#be123c", primaryLight: "#fda4af" },
+	light: { name: "Light", primary: "#ffffff", primaryDark: "#d1d5db", primaryLight: "#f9fafb" },
+	amber: { name: "Amber", primary: "#f59e0b", primaryDark: "#b45309", primaryLight: "#fcd34d" },
+	sky: { name: "Sky", primary: "#0ea5e9", primaryDark: "#0369a1", primaryLight: "#7dd3fc" },
+	violet: { name: "Violet", primary: "#8b5cf6", primaryDark: "#5b21b6", primaryLight: "#c4b5fd" },
+	stone: { name: "Stone", primary: "#78716c", primaryDark: "#3f3f46", primaryLight: "#a8a29e" },
+	fuchsia: { name: "Fuchsia", primary: "#d946ef", primaryDark: "#a21caf", primaryLight: "#f5d0fe" },
+	emerald: { name: "Emerald", primary: "#10b981", primaryDark: "#047857", primaryLight: "#6ee7b7" },
+	amberDark: { name: "AmberDark", primary: "#d97706", primaryDark: "#b45309", primaryLight: "#fcd34d" },
+	coral: { name: "Coral", primary: "#f97316", primaryDark: "#c2410c", primaryLight: "#fdba74" },
+	lavender: { name: "Lavender", primary: "#c084fc", primaryDark: "#7c3aed", primaryLight: "#e9d5ff" },
+	mint: { name: "Mint", primary: "#3eb489", primaryDark: "#2c8c6f", primaryLight: "#8de3c7" }, // new
+	peach: { name: "Peach", primary: "#ffad8f", primaryDark: "#e07c5d", primaryLight: "#ffd3c2" }, // new
 };
 
 const Settings = () => {
-	const [selectedTheme, setSelectedTheme] = useState(localStorage.getItem("theme") || "purple");
+	const defaultTheme = "light";
+	const [selectedTheme, setSelectedTheme] = useState(localStorage.getItem("theme") || defaultTheme);
 
 	useEffect(() => {
 		applyTheme(selectedTheme);
 	}, [selectedTheme]);
 
 	const applyTheme = (themeKey: string) => {
-		const theme = themes[themeKey as keyof typeof themes];
+		const theme = themes[themeKey as keyof typeof themes] || themes[defaultTheme];
 		Object.entries(theme).forEach(([key, value]) => {
 			if (key !== "name") {
 				document.documentElement.style.setProperty(`--color-${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`, value as string);

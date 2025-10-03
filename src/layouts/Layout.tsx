@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import Footer from "../pages/Footer";
+import Footer from "../components/Footer";
 
 interface LayoutProps {
 	isLoggedIn: boolean;
@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 	return (
-		<div className="flex flex-col min-h-screen bg-dark text-gray-100">
+		<div className="flex flex-col min-h-screen text-gray-100">
 			{/* Navbar */}
 			<Navbar
 				isLoggedIn={isLoggedIn}

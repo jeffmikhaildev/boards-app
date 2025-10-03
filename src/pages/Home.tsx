@@ -5,13 +5,8 @@ import { useEffect, useState } from "react";
 // Helper component for step cards with hover animation
 const StepCard = ({ step, title, description }: { step: string; title: string; description: string }) => (
 	<div className="bg-dark-lighter p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:bg-dark-light animate-fadeIn flex flex-col items-center justify-center text-center">
-		{/* Step Number */}
 		<div className="flex justify-center items-center w-14 h-14 bg-primary text-dark rounded-full mb-6 font-bold text-lg">{step}</div>
-
-		{/* Title */}
 		<h3 className="text-xl font-semibold text-primary mb-2 transition-colors duration-300 hover:text-primaryLight">{title}</h3>
-
-		{/* Description */}
 		<p className="text-gray-400">{description}</p>
 	</div>
 );
@@ -37,7 +32,6 @@ const features = [
 const Home = () => {
 	const [offsetY, setOffsetY] = useState(0);
 
-	// For simple parallax effect
 	const handleScroll = () => setOffsetY(window.scrollY);
 
 	useEffect(() => {
@@ -50,22 +44,14 @@ const Home = () => {
 			{/* Hero Section */}
 			<section className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-12">
 				<div className="flex-1 space-y-6 text-center md:text-left">
-					{/* Heading */}
 					<h1 className="text-4xl md:text-6xl font-bold text-primary leading-tight">Welcome to MyBoards</h1>
-
-					{/* Subtitle */}
 					<p className="text-lg text-gray-400 max-w-lg mx-auto md:mx-0 transition-all duration-500 animate-fadeInUp delay-100">Organize tasks, manage projects, and collaborate effortlessly. MyBoards gives you a clean and modern kanban experience designed to boost your productivity.</p>
-
-					{/* CTA Buttons */}
 					<div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fadeInUp delay-200">
-						{/* Primary Button */}
 						<Link
 							to="/boards"
 							className="relative inline-block px-8 py-3 font-semibold rounded-md bg-primary text-dark shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-primaryLight hover:text-dark">
 							Get Started
 						</Link>
-
-						{/* Secondary Button */}
 						<Link
 							to="/about"
 							className="relative inline-block px-8 py-3 font-semibold rounded-md border-2 border-primary text-primary shadow hover:shadow-md hover:bg-primary hover:text-dark transform transition-all duration-300 hover:scale-105">
@@ -104,7 +90,7 @@ const Home = () => {
 						{features.map((feature, index) => (
 							<div
 								key={index}
-								className="bg-dark-lighter p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 animate-fadeInUp delay-[${idx * 100}ms]">
+								className="bg-dark-lighter p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 animate-fadeInUp delay-[${index * 100}ms]">
 								<div className="flex justify-center mb-4">
 									<svg
 										className="w-10 h-10 text-primary"
@@ -150,16 +136,44 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
+
+			{/* Newsletter Section */}
+			<section className="py-16 bg-dark text-center shadow-lg">
+				<div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+					<h3 className="text-2xl sm:text-3xl font-bold text-primary mb-3 sm:mb-4">Stay Updated!</h3>
+					<p className="text-gray-400 mb-6 max-w-lg mx-auto text-sm sm:text-base">Subscribe to our newsletter and get the latest features, tips, and updates straight to your inbox.</p>
+
+					<form className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 max-w-md mx-auto">
+						<div className="relative w-full sm:flex-1">
+							<input
+								type="email"
+								id="newsletter-email"
+								placeholder=" "
+								className="peer w-full px-4 pt-6 pb-2 rounded-md bg-dark-light text-gray-200 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary transition"
+							/>
+							<label
+								htmlFor="newsletter-email"
+								className="absolute left-4 top-3 text-gray-400 text-sm transition-all duration-200
+            peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base 
+            peer-focus:top-2 peer-focus:text-primary peer-focus:text-sm">
+								Enter your email
+							</label>
+						</div>
+
+						<button
+							type="button"
+							className="w-full sm:w-auto px-6 py-3 rounded-md bg-primary text-dark font-semibold hover:bg-primaryLight hover:scale-105 transition transform">
+							Subscribe
+						</button>
+					</form>
+				</div>
+			</section>
+
 			{/* Call to Action */}
 			<section className="py-20 text-center relative overflow-hidden">
 				<div className="container mx-auto px-6 relative z-10">
-					{/* Heading */}
 					<h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 animate-fade-in-up">Ready to Get Started?</h2>
-
-					{/* Paragraph */}
 					<p className="text-gray-400 mb-6 animate-fade-in-up delay-100 max-w-xl mx-auto">Sign up today and streamline your workflow with MyBoards.</p>
-
-					{/* Button */}
 					<Link
 						to="/register"
 						className="relative inline-block px-10 py-4 font-semibold rounded-lg bg-primary text-dark shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-primaryLight hover:text-dark animate-fade-in-up">
@@ -167,7 +181,6 @@ const Home = () => {
 					</Link>
 				</div>
 
-				{/* Optional: floating blobs */}
 				<div className="absolute top-0 left-0 w-full h-full pointer-events-none">
 					<div className="absolute w-72 h-72 bg-primary/20 rounded-full -top-16 -left-16 animate-bounce-slow"></div>
 					<div className="absolute w-96 h-96 bg-primary/10 rounded-full -bottom-20 -right-20 animate-bounce-slow animation-delay-2000"></div>

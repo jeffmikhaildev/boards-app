@@ -19,37 +19,6 @@ const Contacts = () => {
 				<p className="text-gray-400 max-w-2xl mx-auto animate-fadeInUp delay-100">Have questions, feedback, or just want to connect? We'd love to hear from you! Reach out using the details below or send us a quick message.</p>
 			</div>
 
-			{/* Contact Info Cards */}
-			<div className="grid md:grid-cols-3 gap-8">
-				{[
-					{
-						icon: <Mail className="size-6" />,
-						title: "Email",
-						desc: "jeffmikhail.dev@gmail.com",
-					},
-					{
-						icon: <Phone className="size-6" />,
-						title: "Phone",
-						desc: "+63 9219126247",
-					},
-					{
-						icon: <MapPin className="size-6" />,
-						title: "Location",
-						desc: "Pangasinan, Philippines",
-					},
-				].map((item, idx) => (
-					<div
-						key={idx}
-						className="flex items-start gap-4 p-6 rounded-xl bg-dark-light transition-all duration-300 animate-fadeInUp delay-[${idx * 100}]">
-						<div className="flex-shrink-0 mt-1 text-primary">{item.icon}</div>
-						<div>
-							<h3 className="text-lg font-semibold text-white">{item.title}</h3>
-							<p className="text-gray-400">{item.desc}</p>
-						</div>
-					</div>
-				))}
-			</div>
-
 			{/* Contact Form */}
 			<form className="bg-dark-light rounded-2xl p-8 md:p-12 shadow-xl max-w-3xl mx-auto space-y-6 animate-fadeInUp delay-200">
 				<div className="grid md:grid-cols-2 gap-4">
@@ -108,6 +77,37 @@ const Contacts = () => {
 					Send Message
 				</button>
 			</form>
+
+			{/* Contact Info Cards */}
+			<div className="grid md:grid-cols-3 gap-8">
+				{[
+					{
+						icon: <Mail className="size-6" />,
+						title: "Email",
+						desc: "jeffmikhail.dev@gmail.com",
+					},
+					{
+						icon: <Phone className="size-6" />,
+						title: "Phone",
+						desc: "+63 9219126247",
+					},
+					{
+						icon: <MapPin className="size-6" />,
+						title: "Location",
+						desc: "Pangasinan, Philippines",
+					},
+				].map((item, idx) => (
+					<div
+						key={idx}
+						className="flex items-start gap-4 p-6 rounded-xl bg-dark-light transition-all duration-300 animate-fadeInUp delay-[${idx * 100}]">
+						<div className="flex-shrink-0 mt-1 text-primary">{item.icon}</div>
+						<div>
+							<h3 className="text-lg font-semibold text-white">{item.title}</h3>
+							<p className="text-gray-400">{item.desc}</p>
+						</div>
+					</div>
+				))}
+			</div>
 		</section>
 	);
 };

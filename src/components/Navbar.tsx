@@ -46,6 +46,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 				{/* Logo */}
 				<Link
 					to="/"
+					onClick={() => setIsOpen(false)}
 					className="text-xl font-bold text-primary hover:opacity-80 transition">
 					MyBoards
 				</Link>
