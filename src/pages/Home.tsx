@@ -44,17 +44,17 @@ const Home = () => {
 			{/* Hero Section */}
 			<section className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-12">
 				<div className="flex-1 space-y-6 text-center md:text-left">
-					<h1 className="text-4xl md:text-6xl font-bold text-primary leading-tight">Welcome to MyBoards</h1>
-					<p className="text-lg text-gray-400 max-w-lg mx-auto md:mx-0 transition-all duration-500 animate-fadeInUp delay-100">Organize tasks, manage projects, and collaborate effortlessly. MyBoards gives you a clean and modern kanban experience designed to boost your productivity.</p>
+					<h1 className="text-4xl md:text-6xl font-bold text-primary leading-tight">Take Control of Your Workflow</h1>
+					<p className="text-lg text-gray-400 max-w-lg mx-auto md:mx-0 transition-all duration-500 animate-fadeInUp delay-100">Streamline tasks, manage projects, and collaborate seamlessly. MyBoards provides a clean, modern kanban experience to help you get more done with less hassle.</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fadeInUp delay-200">
-						<Link
-							to="/boards"
-							className="relative inline-block px-8 py-3 font-semibold rounded-md bg-primary text-dark shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-primaryLight hover:text-dark">
-							Get Started
-						</Link>
+						{/* <Link
+            to="/boards"
+            className="relative inline-block px-8 py-3 font-semibold rounded-md bg-primary text-dark shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-primaryLight hover:text-dark">
+            Get Started
+        </Link> */}
 						<Link
 							to="/about"
-							className="relative inline-block px-8 py-3 font-semibold rounded-md border-2 border-primary text-primary shadow hover:shadow-md hover:bg-primary hover:text-dark transform transition-all duration-300 hover:scale-105">
+							className="relative inline-block px-8 py-3 font-semibold rounded-md border-2 border-primary text-primary shadow hover:shadow-md transform transition-all duration-300 hover:scale-105">
 							Learn More
 						</Link>
 					</div>
@@ -138,7 +138,7 @@ const Home = () => {
 			</section>
 
 			{/* Newsletter Section */}
-			<section className="py-16 bg-dark text-center shadow-lg">
+			<section className="py-16 bg-dark text-center shadow-lg mb-20">
 				<div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
 					<h3 className="text-2xl sm:text-3xl font-bold text-primary mb-3 sm:mb-4">Stay Updated!</h3>
 					<p className="text-gray-400 mb-6 max-w-lg mx-auto text-sm sm:text-base">Subscribe to our newsletter and get the latest features, tips, and updates straight to your inbox.</p>

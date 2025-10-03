@@ -32,13 +32,18 @@ const Register: React.FC<RegisterProps> = ({ setIsLoggedIn }) => {
 		navigate("/boards");
 	};
 
-	// Check if any field is empty
-	const isDisabled = !username || !password || !confirmPassword;
-
 	return (
-		<div className="flex justify-center items-center min-h-screen bg-dark">
-			<div className="bg-dark-lighter rounded-xl shadow-xl p-10 w-96 flex flex-col items-center">
-				<h2 className="text-3xl font-bold text-primary text-center mb-8">Create Account</h2>
+		<div
+			className="flex justify-center items-center min-h-screen"
+			style={{ backgroundColor: "var(--color-dark)" }}>
+			<div
+				className="rounded-xl shadow-xl p-10 w-96 flex flex-col items-center"
+				style={{ backgroundColor: "var(--color-dark-lighter)" }}>
+				<h2
+					className="text-3xl font-bold text-primary text-center mb-8"
+					style={{ color: "var(--color-primary)" }}>
+					Create Account
+				</h2>
 
 				{error && <div className="mb-4 p-3 bg-red-600 text-white rounded text-center w-full">{error}</div>}
 
@@ -52,7 +57,7 @@ const Register: React.FC<RegisterProps> = ({ setIsLoggedIn }) => {
 							id="username"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
-							className="peer block w-full rounded-lg border border-gray-700 bg-gray-900 px-4 pt-5 pb-2 text-white placeholder-transparent focus:outline-none focus:border-primary"
+							className="peer block w-full rounded-lg border border-gray-700 px-4 pt-5 pb-2 text-white placeholder-transparent focus:outline-none focus:border-primary"
 							placeholder="Username"
 						/>
 						<label
@@ -69,7 +74,7 @@ const Register: React.FC<RegisterProps> = ({ setIsLoggedIn }) => {
 							id="password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
-							className="peer block w-full rounded-lg border border-gray-700 bg-gray-900 px-4 pt-5 pb-2 text-white placeholder-transparent focus:outline-none focus:border-primary"
+							className="peer block w-full rounded-lg border border-gray-700 px-4 pt-5 pb-2 text-white placeholder-transparent focus:outline-none focus:border-primary"
 							placeholder="Password"
 						/>
 						<label
@@ -92,7 +97,7 @@ const Register: React.FC<RegisterProps> = ({ setIsLoggedIn }) => {
 							id="confirmPassword"
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
-							className="peer block w-full rounded-lg border border-gray-700 bg-gray-900 px-4 pt-5 pb-2 text-white placeholder-transparent focus:outline-none focus:border-primary"
+							className="peer block w-full rounded-lg border border-gray-700 px-4 pt-5 pb-2 text-white placeholder-transparent focus:outline-none focus:border-primary"
 							placeholder="Confirm Password"
 						/>
 						<label
@@ -108,10 +113,14 @@ const Register: React.FC<RegisterProps> = ({ setIsLoggedIn }) => {
 						</button>
 					</div>
 
+					{/* Register button */}
 					<button
 						type="submit"
-						disabled={isDisabled}
-						className={`w-full py-3 rounded-lg font-semibold transition ${isDisabled ? "bg-gray-700 text-gray-400 cursor-not-allowed" : "bg-primary text-dark hover:opacity-90"}`}>
+						className="w-full py-3 rounded-lg font-semibold transition transform hover:scale-105"
+						style={{
+							backgroundColor: "var(--color-primary)",
+							color: "var(--color-dark)",
+						}}>
 						Register
 					</button>
 				</form>
@@ -120,7 +129,8 @@ const Register: React.FC<RegisterProps> = ({ setIsLoggedIn }) => {
 					Already have an account?{" "}
 					<Link
 						to="/login"
-						className="text-primary font-semibold hover:underline">
+						className="text-primary font-semibold hover:underline"
+						style={{ color: "var(--color-primary)" }}>
 						Sign In
 					</Link>
 				</p>

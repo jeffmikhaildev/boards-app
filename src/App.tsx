@@ -8,7 +8,6 @@ import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
 import BoardsList from "./pages/BoardsList";
 import Register from "./pages/Register";
-import Settings from "./pages/Settings";
 import ScrollToTop from "./components/ScrollToTop";
 import BoardDetails from "./pages/BoardDetails";
 import CardDetails from "./pages/CardDetails";
@@ -66,10 +65,6 @@ function App() {
 					<Route
 						path="/register"
 						element={<Register setIsLoggedIn={setIsLoggedIn} />}
-					/>
-					<Route
-						path="/settings"
-						element={<Settings />}
 					/>
 				</Route>
 			</Routes>

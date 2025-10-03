@@ -21,9 +21,9 @@ const BoardsList = () => {
 	};
 
 	return (
-		<section className="flex flex-col gap-8">
+		<section className="flex flex-col gap-20">
 			<div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-				<h1 className="text-4xl sm:text-5xl font-extrabold text-primary text-center sm:text-left tracking-tight">MyBoards</h1>
+				<h1 className="text-4xl sm:text-5xl font-extrabold text-primary text-center sm:text-left tracking-tight">Organize Your Projects</h1>
 
 				<button
 					onClick={() => setIsCreatingBoard(true)}

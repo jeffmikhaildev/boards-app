@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Linkedin, Github, Instagram } from "lucide-react";
+import { Twitter, Linkedin, Github, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
 	return (
@@ -9,7 +9,7 @@ const Footer = () => {
 				<div>
 					<Link
 						to="/"
-						className="text-xl font-bold text-primary hover:opacity-80 transition">
+						className="text-2xl font-bold text-primary hover:opacity-80 transition">
 						MyBoards
 					</Link>
 					<p className="text-gray-400 leading-relaxed">Organize tasks, manage projects, and boost productivity with a clean and modern kanban-style board system.</p>
@@ -50,31 +50,31 @@ const Footer = () => {
 						<a
 							href="https://facebook.com"
 							target="_blank"
-							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition">
-							<Facebook className="w-5 h-5" />
+							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition">
+							<Youtube className="w-5 h-5" />
 						</a>
 						<a
 							href="https://twitter.com"
 							target="_blank"
-							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition">
+							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary  transition">
 							<Twitter className="w-5 h-5" />
 						</a>
 						<a
 							href="https://linkedin.com"
 							target="_blank"
-							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition">
+							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary  transition">
 							<Linkedin className="w-5 h-5" />
 						</a>
 						<a
 							href="https://github.com"
 							target="_blank"
-							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition">
+							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary  transition">
 							<Github className="w-5 h-5" />
 						</a>
 						<a
 							href="https://instagram.com"
 							target="_blank"
-							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition">
+							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition">
 							<Instagram className="w-5 h-5" />
 						</a>
 					</div>

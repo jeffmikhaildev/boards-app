@@ -1,15 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contacts = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
-	const [isDisabled, setIsDisabled] = useState(true);
-
-	useEffect(() => {
-		setIsDisabled(!(name && email && message));
-	}, [name, email, message]);
 
 	return (
 		<section className="container mx-auto px-6 py-16 text-gray-200 space-y-12">
@@ -20,7 +15,9 @@ const Contacts = () => {
 			</div>
 
 			{/* Contact Form */}
-			<form className="bg-dark-light rounded-2xl p-8 md:p-12 shadow-xl max-w-3xl mx-auto space-y-6 animate-fadeInUp delay-200">
+			<form
+				className="rounded-2xl p-8 md:p-12 shadow-xl max-w-3xl mx-auto space-y-6 animate-fadeInUp delay-200"
+				style={{ backgroundColor: "var(--color-dark-light)" }}>
 				<div className="grid md:grid-cols-2 gap-4">
 					<div className="relative">
 						<input
@@ -70,10 +67,11 @@ const Contacts = () => {
 					</label>
 				</div>
 
+				{/* Send Button */}
 				<button
 					type="submit"
-					disabled={isDisabled}
-					className={`w-full md:w-auto px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 ${isDisabled ? "bg-gray-700 cursor-not-allowed opacity-50" : "bg-primary text-dark "}`}>
+					className="w-full md:w-auto px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+					style={{ backgroundColor: "var(--color-primary)", color: "var(--color-dark)" }}>
 					Send Message
 				</button>
 			</form>
@@ -82,24 +80,25 @@ const Contacts = () => {
 			<div className="grid md:grid-cols-3 gap-8">
 				{[
 					{
-						icon: <Mail className="size-6" />,
+						icon: <Mail className="w-6 h-6" />,
 						title: "Email",
 						desc: "jeffmikhail.dev@gmail.com",
 					},
 					{
-						icon: <Phone className="size-6" />,
+						icon: <Phone className="w-6 h-6" />,
 						title: "Phone",
 						desc: "+63 9219126247",
 					},
 					{
-						icon: <MapPin className="size-6" />,
+						icon: <MapPin className="w-6 h-6" />,
 						title: "Location",
 						desc: "Pangasinan, Philippines",
 					},
 				].map((item, idx) => (
 					<div
 						key={idx}
-						className="flex items-start gap-4 p-6 rounded-xl bg-dark-light transition-all duration-300 animate-fadeInUp delay-[${idx * 100}]">
+						className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 animate-fadeInUp"
+						style={{ backgroundColor: "var(--color-dark-light)" }}>
 						<div className="flex-shrink-0 mt-1 text-primary">{item.icon}</div>
 						<div>
 							<h3 className="text-lg font-semibold text-white">{item.title}</h3>
