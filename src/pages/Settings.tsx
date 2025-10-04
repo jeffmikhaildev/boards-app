@@ -16,10 +16,10 @@ const themes = {
 };
 
 const Settings = () => {
-	const [selectedTheme, setSelectedTheme] = useState(localStorage.getItem("theme") || "purple");
+	const [selectedTheme, setSelectedTheme] = useState(localStorage.getItem("theme"));
 
 	useEffect(() => {
-		applyTheme(selectedTheme);
+		applyTheme(selectedTheme!);
 	}, [selectedTheme]);
 
 	const applyTheme = (themeKey: string) => {
