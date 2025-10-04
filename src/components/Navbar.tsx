@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, LogIn, LogOut, Settings } from "lucide-react";
 
@@ -11,6 +11,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [username, setUsername] = useState<string | null>(null);
 	const navigate = useNavigate();
+	const menuRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (isLoggedIn) {
@@ -39,6 +40,23 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 		navigate("/settings");
 		setIsOpen(false);
 	};
+
+	// Close mobile menu when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+				setIsOpen(false);
+			}
+		};
+
+		if (isOpen) {
+			document.addEventListener("mousedown", handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [isOpen]);
 
 	return (
 		<header className="bg-dark border-b border-dark-lighter sticky top-0 z-50">
@@ -86,11 +104,9 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 
 					{isLoggedIn ? (
 						<>
-							{/* Welcome message */}
 							<li className="text-gray-200 text-xs font-medium">
 								Hello, <span className="text-primary ml-1">{username}</span>
 							</li>
-							{/* Settings icon */}
 							<li>
 								<button
 									onClick={goToSettings}
@@ -99,7 +115,6 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 									<Settings className="w-5 h-5 text-gray-200" />
 								</button>
 							</li>
-
 							<li>
 								<button
 									onClick={handleLogout}
@@ -130,7 +145,9 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 			</nav>
 
 			{/* Mobile Menu */}
-			<div className={`md:hidden fixed top-0 right-0 h-full w-1/2 bg-dark-light border-l border-dark-lighter transform ${isOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out z-40`}>
+			<div
+				ref={menuRef}
+				className={`md:hidden fixed top-0 right-0 h-full w-1/2 bg-dark-light border-l border-dark-lighter transform ${isOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out z-40`}>
 				<div className="flex flex-col p-6 space-y-6">
 					{isLoggedIn && (
 						<Link
@@ -148,7 +165,8 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 					</Link>
 					<Link
 						to="/blog"
-						className="hover:text-primary transition">
+						className="hover:text-primary transition"
+						onClick={() => setIsOpen(false)}>
 						Blog
 					</Link>
 					<Link
@@ -163,6 +181,13 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 							<p className="text-gray-200 font-medium">
 								Hello, <span className="text-primary">{username}</span>
 							</p>
+
+							<button
+								onClick={goToSettings}
+								className="p-2 rounded hover:bg-dark-lighter transition"
+								title="Settings">
+								<Settings className="w-5 h-5 text-gray-200" />
+							</button>
 
 							<button
 								onClick={handleLogout}
