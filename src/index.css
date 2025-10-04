@@ -6,7 +6,7 @@ html {
 	font-family: "Poppins", sans-serif;
 }
 
-@theme {
+/* @theme {
 	--color-primary: #ffd700;
 	--color-primary-dark: #b8860b;
 	--color-primary-light: #ffeb3b;
@@ -16,7 +16,7 @@ html {
 	--color-dark-light: #3d3d3d;
 
 	--breakpoint-500px: 500px;
-}
+} */
 
 /* @theme {
 	--color-primary: #8b5cf6;
@@ -30,7 +30,7 @@ html {
 	--breakpoint-500px: 500px;
 } */
 
-/* @theme {
+@theme {
 	--color-primary: #ec4899;
 	--color-primary-dark: #be185d;
 	--color-primary-light: #f9a8d4;
@@ -40,11 +40,11 @@ html {
 	--color-dark-light: #3d3d3d;
 
 	--breakpoint-500px: 500px;
-} */
+}
 
 @layer base {
 	body {
-		@apply text-gray-100 bg-dark 2xl:max-w-screen 2xl:mx-auto;
+		@apply text-gray-100 bg-[#1a1a1a] 2xl:max-w-screen 2xl:mx-auto;
 	}
 
 	button {

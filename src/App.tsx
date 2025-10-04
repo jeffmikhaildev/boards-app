@@ -11,6 +11,8 @@ import Register from "./pages/Register";
 import ScrollToTop from "./components/ScrollToTop";
 import BoardDetails from "./pages/BoardDetails";
 import CardDetails from "./pages/CardDetails";
+import Settings from "./pages/Settings";
+import Blog from "./pages/Blog";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
@@ -48,11 +50,19 @@ function App() {
 								path="/boards/:boardId/card/:cardId"
 								element={<CardDetails />}
 							/>
+							<Route
+								path="/settings"
+								element={<Settings />}
+							/>
 						</>
 					)}
 					<Route
 						path="/about"
 						element={<About />}
+					/>
+					<Route
+						path="/blog"
+						element={<Blog />}
 					/>
 					<Route
 						path="/contacts"

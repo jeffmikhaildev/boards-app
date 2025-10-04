@@ -15,8 +15,8 @@ const teamMembers = [
 		},
 	},
 	{
-		name: "Juan Tamad",
-		role: "Developer",
+		name: "John Doe",
+		role: "Project Manager",
 		img: "https://i.pravatar.cc/150?img=52",
 		socials: {
 			mail: "mailto:juan@example.com",
@@ -28,7 +28,7 @@ const teamMembers = [
 		},
 	},
 	{
-		name: "Jane Doe Gong",
+		name: "Jane Doe",
 		role: "UI/UX Designer",
 		img: "https://i.pravatar.cc/150?img=24",
 		socials: {
@@ -97,37 +97,44 @@ const About = () => {
 							{/* Social Icons */}
 							<div className="flex justify-center gap-4 text-primary flex-wrap">
 								<a
+									className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition"
 									href={member.socials.facebook}
 									target="_blank"
 									rel="noreferrer">
-									<Facebook className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition cursor-pointer size-8" />
+									<Facebook className="size-5" />
 								</a>
 								<a
+									className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition"
 									href={member.socials.mail}
 									target="_blank"
 									rel="noreferrer">
-									<Mail className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition cursor-pointer size-8" />
-								</a>
-								<a href={member.socials.phone}>
-									<Phone className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition cursor-pointer size-8" />
+									<Mail className="size-5" />
 								</a>
 								<a
+									className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition"
+									href={member.socials.phone}>
+									<Phone className="size-5" />
+								</a>
+								<a
+									className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition"
 									href={member.socials.github}
 									target="_blank"
 									rel="noreferrer">
-									<Github className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition cursor-pointer size-8" />
+									<Github className="size-5" />
 								</a>
 								<a
+									className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition"
 									href={member.socials.linkedin}
 									target="_blank"
 									rel="noreferrer">
-									<Linkedin className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition cursor-pointer size-8" />
+									<Linkedin className="size-5" />
 								</a>
 								<a
+									className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary transition"
 									href={member.socials.twitter}
 									target="_blank"
 									rel="noreferrer">
-									<Twitter className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary hover:bg-dark transition cursor-pointer size-8" />
+									<Twitter className="size-5" />
 								</a>
 							</div>
 						</div>

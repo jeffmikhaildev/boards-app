@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Twitter, Linkedin, Github, Instagram, Youtube } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Youtube, Mail } from "lucide-react";
 
 const Footer = () => {
 	return (
@@ -69,7 +69,7 @@ const Footer = () => {
 							href="https://github.com"
 							target="_blank"
 							className="p-2 rounded-full bg-dark-lighter text-gray-400 hover:text-primary  transition">
-							<Github className="w-5 h-5" />
+							<Mail className="w-5 h-5" />
 						</a>
 						<a
 							href="https://instagram.com"

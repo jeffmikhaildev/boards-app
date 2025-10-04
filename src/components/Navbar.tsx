@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, LogIn, LogOut } from "lucide-react";
+import { Menu, X, LogIn, LogOut, Settings } from "lucide-react";
 
 interface NavbarProps {
 	isLoggedIn: boolean;
@@ -35,6 +35,11 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 		setIsOpen(false);
 	};
 
+	const goToSettings = () => {
+		navigate("/settings");
+		setIsOpen(false);
+	};
+
 	return (
 		<header className="bg-dark border-b border-dark-lighter sticky top-0 z-50">
 			<nav className="container mx-auto flex justify-between items-center py-6 px-6">
@@ -66,6 +71,13 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 					</li>
 					<li>
 						<Link
+							to="/blog"
+							className="hover:text-primary transition">
+							Blog
+						</Link>
+					</li>
+					<li>
+						<Link
 							to="/contacts"
 							className="hover:text-primary transition">
 							Contacts
@@ -77,6 +89,15 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 							{/* Welcome message */}
 							<li className="text-gray-200 text-xs font-medium">
 								Hello, <span className="text-primary ml-1">{username}</span>
+							</li>
+							{/* Settings icon */}
+							<li>
+								<button
+									onClick={goToSettings}
+									className="p-2 rounded hover:bg-dark-lighter transition"
+									title="Settings">
+									<Settings className="w-5 h-5 text-gray-200" />
+								</button>
 							</li>
 
 							<li>

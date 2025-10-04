@@ -137,53 +137,62 @@ const Home = () => {
 				</div>
 			</section>
 
-			{/* Newsletter Section */}
-			<section className="py-16 bg-dark text-center shadow-lg mb-20">
-				<div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-					<h3 className="text-2xl sm:text-3xl font-bold text-primary mb-3 sm:mb-4">Stay Updated!</h3>
-					<p className="text-gray-400 mb-6 max-w-lg mx-auto text-sm sm:text-base">Subscribe to our newsletter and get the latest features, tips, and updates straight to your inbox.</p>
+			{/* Productivity Tips Section */}
+			<section className="py-20 bg-dark-light">
+				<div className="container mx-auto px-6 text-center">
+					<h2 className="text-3xl md:text-4xl font-bold text-primary mb-12 animate-fadeInUp">Productivity Tips</h2>
+					<div className="grid md:grid-cols-3 gap-10">
+						<div className="bg-dark-lighter p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+							<h3 className="text-xl font-semibold text-primary mb-2">Break Work into Tasks</h3>
+							<p className="text-gray-400">Divide big goals into smaller tasks to stay focused and avoid overwhelm.</p>
+						</div>
 
-					<form className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 max-w-md mx-auto">
+						<div className="bg-dark-lighter p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+							<h3 className="text-xl font-semibold text-primary mb-2">Prioritize Wisely</h3>
+							<p className="text-gray-400">Use columns like "To Do, In Progress, Done" to visualize and prioritize your work.</p>
+						</div>
+
+						<div className="bg-dark-lighter p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+							<h3 className="text-xl font-semibold text-primary mb-2">Track Your Progress</h3>
+							<p className="text-gray-400">Regularly update tasks and celebrate milestones to stay motivated.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* Newsletter Section */}
+			<section className="py-20 bg-gradient-to-br from-dark-light via-dark to-dark-lighter text-center shadow-2xl mt-24 rounded-2xl relative overflow-hidden">
+				<div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none"></div>
+
+				<div className="container mx-auto px-6 sm:px-8 md:px-12 relative">
+					<h3 className="text-3xl sm:text-4xl font-extrabold text-primary mb-4 animate-fadeInUp">Stay Updated!</h3>
+					<p className="text-gray-400 mb-8 max-w-xl mx-auto text-base sm:text-lg leading-relaxed">Subscribe to our newsletter and get the latest features, tips, and updates straight to your inbox.</p>
+
+					<form className="flex flex-col sm:flex-row justify-center gap-4 max-w-lg mx-auto animate-fadeInUp delay-200">
 						<div className="relative w-full sm:flex-1">
 							<input
 								type="email"
 								id="newsletter-email"
 								placeholder=" "
-								className="peer w-full px-4 pt-6 pb-2 rounded-md bg-dark-light text-gray-200 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary transition"
+								className="peer w-full px-4 pt-6 pb-2 rounded-xl bg-dark text-gray-200 placeholder-transparent 
+						focus:outline-none focus:ring-2 focus:ring-primary transition shadow-lg"
 							/>
 							<label
 								htmlFor="newsletter-email"
 								className="absolute left-4 top-3 text-gray-400 text-sm transition-all duration-200
-            peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base 
-            peer-focus:top-2 peer-focus:text-primary peer-focus:text-sm">
+						peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base 
+						peer-focus:top-2 peer-focus:text-primary peer-focus:text-sm">
 								Enter your email
 							</label>
 						</div>
 
 						<button
 							type="button"
-							className="w-full sm:w-auto px-6 py-3 rounded-md bg-primary text-dark font-semibold hover:bg-primaryLight hover:scale-105 transition transform">
+							className="w-full sm:w-auto px-8 py-3 rounded-xl bg-primary text-dark font-semibold 
+					shadow-lg hover:shadow-xl hover:bg-primaryLight hover:scale-105 transition transform duration-200">
 							Subscribe
 						</button>
 					</form>
-				</div>
-			</section>
-
-			{/* Call to Action */}
-			<section className="py-20 text-center relative overflow-hidden">
-				<div className="container mx-auto px-6 relative z-10">
-					<h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 animate-fade-in-up">Ready to Get Started?</h2>
-					<p className="text-gray-400 mb-6 animate-fade-in-up delay-100 max-w-xl mx-auto">Sign up today and streamline your workflow with MyBoards.</p>
-					<Link
-						to="/register"
-						className="relative inline-block px-10 py-4 font-semibold rounded-lg bg-primary text-dark shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-primaryLight hover:text-dark animate-fade-in-up">
-						Create Free Account
-					</Link>
-				</div>
-
-				<div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-					<div className="absolute w-72 h-72 bg-primary/20 rounded-full -top-16 -left-16 animate-bounce-slow"></div>
-					<div className="absolute w-96 h-96 bg-primary/10 rounded-full -bottom-20 -right-20 animate-bounce-slow animation-delay-2000"></div>
 				</div>
 			</section>
 		</div>
