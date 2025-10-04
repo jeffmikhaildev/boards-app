@@ -14,6 +14,9 @@ import CardDetails from "./pages/CardDetails";
 import Settings from "./pages/Settings";
 import Blog from "./pages/Blog";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
 
@@ -22,63 +25,75 @@ function App() {
 	}, [isLoggedIn]);
 
 	return (
-		<BrowserRouter>
-			<ScrollToTop />
-			<Routes>
-				<Route
-					element={
-						<Layout
-							isLoggedIn={isLoggedIn}
-							setIsLoggedIn={setIsLoggedIn}
+		<>
+			<BrowserRouter>
+				<ScrollToTop />
+				<Routes>
+					<Route
+						element={
+							<Layout
+								isLoggedIn={isLoggedIn}
+								setIsLoggedIn={setIsLoggedIn}
+							/>
+						}>
+						<Route
+							path="/"
+							element={<Home />}
 						/>
-					}>
-					<Route
-						path="/"
-						element={<Home />}
-					/>
-					{isLoggedIn && (
-						<>
-							<Route
-								path="/boards"
-								element={<BoardsList />}
-							/>
-							<Route
-								path="/boards/:boardId"
-								element={<BoardDetails />}
-							/>
-							<Route
-								path="/boards/:boardId/card/:cardId"
-								element={<CardDetails />}
-							/>
-							<Route
-								path="/settings"
-								element={<Settings />}
-							/>
-						</>
-					)}
-					<Route
-						path="/about"
-						element={<About />}
-					/>
-					<Route
-						path="/blog"
-						element={<Blog />}
-					/>
-					<Route
-						path="/contacts"
-						element={<Contacts />}
-					/>
-					<Route
-						path="/login"
-						element={<Login setIsLoggedIn={setIsLoggedIn} />}
-					/>
-					<Route
-						path="/register"
-						element={<Register setIsLoggedIn={setIsLoggedIn} />}
-					/>
-				</Route>
-			</Routes>
-		</BrowserRouter>
+						{isLoggedIn && (
+							<>
+								<Route
+									path="/boards"
+									element={<BoardsList />}
+								/>
+								<Route
+									path="/boards/:boardId"
+									element={<BoardDetails />}
+								/>
+								<Route
+									path="/boards/:boardId/card/:cardId"
+									element={<CardDetails />}
+								/>
+								<Route
+									path="/settings"
+									element={<Settings />}
+								/>
+							</>
+						)}
+						<Route
+							path="/about"
+							element={<About />}
+						/>
+						<Route
+							path="/blog"
+							element={<Blog />}
+						/>
+						<Route
+							path="/contacts"
+							element={<Contacts />}
+						/>
+						<Route
+							path="/login"
+							element={<Login setIsLoggedIn={setIsLoggedIn} />}
+						/>
+						<Route
+							path="/register"
+							element={<Register setIsLoggedIn={setIsLoggedIn} />}
+						/>
+					</Route>
+				</Routes>
+			</BrowserRouter>
+			<ToastContainer
+				position="top-right"
+				autoClose={2000}
+				hideProgressBar={false}
+				newestOnTop
+				closeOnClick
+				pauseOnHover
+				draggable
+				theme="dark"
+			/>
+		</>
 	);
 }
 

@@ -5,7 +5,6 @@ const Footer = () => {
 	return (
 		<footer className="bg-dark border-t border-dark-lighter mt-12">
 			<div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
-				{/* Brand / About */}
 				<div>
 					<Link
 						to="/"
@@ -21,16 +20,16 @@ const Footer = () => {
 					<ul className="space-y-3">
 						<li>
 							<Link
-								to="/boards"
+								to="/about"
 								className="hover:text-primary transition">
-								Boards
+								About
 							</Link>
 						</li>
 						<li>
 							<Link
-								to="/about"
+								to="/blog"
 								className="hover:text-primary transition">
-								About
+								Blog
 							</Link>
 						</li>
 						<li>

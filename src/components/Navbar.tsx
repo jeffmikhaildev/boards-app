@@ -147,6 +147,11 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
 						About
 					</Link>
 					<Link
+						to="/blog"
+						className="hover:text-primary transition">
+						Blog
+					</Link>
+					<Link
 						to="/contacts"
 						className="hover:text-primary transition"
 						onClick={() => setIsOpen(false)}>
