@@ -25,6 +25,12 @@ const Register: React.FC<RegisterProps> = ({ setIsLoggedIn }) => {
 			return;
 		}
 
+		if (!username || !password || !confirmPassword) {
+			setError("Please fill in all fields.");
+			setTimeout(() => setError(""), 2000);
+			return;
+		}
+
 		localStorage.setItem("username", username);
 		localStorage.setItem("isLoggedIn", "true");
 		setIsLoggedIn(true);
