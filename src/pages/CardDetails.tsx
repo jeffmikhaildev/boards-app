@@ -69,7 +69,7 @@ const CardDetails = () => {
 			<div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
 				<h1 className="text-3xl md:text-4xl font-bold text-primary text-center md:text-left">{card.title}</h1>
 
-				<div className="flex flex-col sm:flex-row gap-3">
+				<div className="flex flex-row gap-3 *:grow">
 					<button
 						onClick={handleSave}
 						className="flex items-center gap-2 px-4 py-2 bg-primary text-dark rounded-md shadow hover:bg-primaryLight transition">
@@ -144,7 +144,16 @@ const CardDetails = () => {
 					</select>
 				</div>
 
-				<p className="text-sm font-medium text-primary">Created: {new Date(card.createdAt).toLocaleString()}</p>
+				<p className="text-sm font-medium text-primary">
+					Created:{" "}
+					{new Date(card.createdAt).toLocaleString("en-US", {
+						month: "long",
+						day: "2-digit",
+						year: "numeric",
+						hour: "2-digit",
+						minute: "2-digit",
+					})}
+				</p>
 			</form>
 
 			{/* Delete Confirmation Modal */}

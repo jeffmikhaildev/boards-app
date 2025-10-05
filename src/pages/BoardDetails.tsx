@@ -132,31 +132,47 @@ const BoardDetails = () => {
 			)}
 
 			{/* Cards Grid */}
-			<div className="grid gap-4 grid-cols-1 500px:grid-cols-2 md:grid-cols-3">
-				{columns.map((column) => (
-					<div
-						key={column.id}
-						onDragOver={handleDragOver}
-						onDrop={() => handleDrop(column.id as Card["status"])}
-						className={`flex flex-col gap-4 items-start bg-dark-lighter rounded-sm p-4 ${draggedCard ? "border-2 border-dashed border-primary/50" : ""}`}>
-						<h2 className="text-2xl font-extrabold text-primary mb-4">{column.title}</h2>
-						<div className="flex flex-wrap gap-2 *:bg-primary-light *:text-dark *:p-4 *:rounded-sm *:space-y-2">
-							{board.cards
-								.filter((card) => card.status === column.id)
-								.map((card) => (
-									<div
-										key={card.id}
-										draggable
-										onDragStart={() => handleDragStart(card)}
-										className={`cursor-move ${draggedCard?.id === card.id ? "opacity-55" : ""}`}
-										onClick={() => navigate(`/boards/${boardId}/card/${card.id}`)}>
-										<h3 className="font-bold">{card.title}</h3>
-										<p className="text-sm text-dark-light">{new Date(card.createdAt).toLocaleDateString()}</p>
-									</div>
-								))}
+			<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+				{columns.map((column) => {
+					const cardsInColumn = board.cards.filter((card) => card.status === column.id);
+
+					return (
+						<div
+							key={column.id}
+							onDragOver={handleDragOver}
+							onDrop={() => handleDrop(column.id as Card["status"])}
+							className={`flex flex-col gap-4 items-start bg-dark-lighter rounded-sm p-4 ${draggedCard ? "border-2 border-dashed border-primary/50" : ""}`}>
+							<h2 className="text-2xl font-extrabold text-primary mb-2">{column.title}</h2>
+
+							{cardsInColumn.length > 0 ? (
+								<div className="flex flex-wrap gap-2 *:bg-primary-light *:text-dark *:py-2 *:px-4 *:rounded-sm *:space-y-2">
+									{cardsInColumn.map((card) => (
+										<div
+											key={card.id}
+											draggable
+											onDragStart={() => handleDragStart(card)}
+											className={`cursor-move ${draggedCard?.id === card.id ? "opacity-55" : ""}`}
+											onClick={() => navigate(`/boards/${boardId}/card/${card.id}`)}>
+											<h3 className="font-bold">{card.title}</h3>
+											<p className="text-xs text-dark-light">
+												{new Date(card.createdAt).toLocaleDateString("en-US", {
+													month: "short",
+													day: "2-digit",
+													year: "numeric",
+												})}
+											</p>
+										</div>
+									))}
+								</div>
+							) : (
+								<div className="flex flex-1 w-full flex-col items-center justify-center py-10 text-center">
+									<p className="text-base font-medium text-gray-500 tracking-wide">No cards</p>
+									<span className="text-xs text-gray-400 mt-1">Drag a card here or create a new one</span>
+								</div>
+							)}
 						</div>
-					</div>
-				))}
+					);
+				})}
 			</div>
 
 			{/* Delete Board Modal */}

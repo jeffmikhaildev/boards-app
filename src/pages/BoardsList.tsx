@@ -1,4 +1,4 @@
-import { Layout, Plus } from "lucide-react";
+import { Layout, Plus, FolderOpen } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -73,7 +73,7 @@ const BoardsList = () => {
 					<input
 						type="text"
 						placeholder="Board Title"
-						ref={inputRef} // <-- focus ref
+						ref={inputRef}
 						className="bg-primary text-dark px-4 py-2 rounded-sm placeholder:text-gray-600 outline-none"
 						onChange={(e) => setNewBoardTitle(e.target.value)}
 						value={newBoardTitle}
@@ -97,18 +97,26 @@ const BoardsList = () => {
 
 			{/* Boards Grid */}
 			<div className="grid gap-4 grid-cols-1 500px:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-				{Object.values(boards).map((board) => (
-					<div
-						key={board.id}
-						onClick={() => navigate(`/boards/${board.id}`)}
-						className="cursor-pointer bg-primary text-dark rounded-sm px-6 py-8 flex flex-col items-center gap-4">
-						<div className="flex flex-col gap-4 items-center">
-							<Layout className="size-8" />
-							<h2 className="text-xl font-semibold">{board.title}</h2>
-						</div>
-						<p>{board.cards.length} Cards</p>
+				{Object.values(boards).length === 0 ? (
+					<div className="col-span-full flex flex-col items-center justify-center py-12 text-gray-400 gap-4">
+						<FolderOpen className="w-12 h-12 text-primary" />
+						<p className="text-lg font-medium">No boards yet</p>
+						<p className="text-sm">Start by creating a new project.</p>
 					</div>
-				))}
+				) : (
+					Object.values(boards).map((board) => (
+						<div
+							key={board.id}
+							onClick={() => navigate(`/boards/${board.id}`)}
+							className="cursor-pointer bg-primary text-dark rounded-sm px-6 py-8 flex flex-col items-center gap-4">
+							<div className="flex flex-col gap-4 items-center">
+								<Layout className="size-8" />
+								<h2 className="text-xl font-semibold">{board.title}</h2>
+							</div>
+							<p>{board.cards.length} Cards</p>
+						</div>
+					))
+				)}
 			</div>
 		</section>
 	);
