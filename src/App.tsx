@@ -16,6 +16,7 @@ import Blog from "./pages/Blog";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CookieConsent from "./components/CookieConsent";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
@@ -83,6 +84,7 @@ function App() {
 					</Route>
 				</Routes>
 			</BrowserRouter>
+			<CookieConsent />
 			<ToastContainer
 				position="top-right"
 				autoClose={2000}

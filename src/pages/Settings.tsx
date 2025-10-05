@@ -16,22 +16,28 @@ const themes = {
 };
 
 const Settings = () => {
-	const [selectedTheme, setSelectedTheme] = useState(localStorage.getItem("theme"));
-
-	useEffect(() => {
-		applyTheme(selectedTheme!);
-	}, [selectedTheme]);
+	const [selectedTheme, setSelectedTheme] = useState<string>(() => {
+		return localStorage.getItem("theme") || "gold";
+	});
 
 	const applyTheme = (themeKey: string) => {
 		const theme = themes[themeKey as keyof typeof themes];
+		if (!theme) return;
+
 		Object.entries(theme).forEach(([key, value]) => {
 			if (key !== "name") {
 				document.documentElement.style.setProperty(`--color-${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`, value as string);
 			}
 		});
+
 		setSelectedTheme(themeKey);
 		localStorage.setItem("theme", themeKey);
 	};
+
+	// 👇 Apply theme immediately on mount
+	useEffect(() => {
+		applyTheme(selectedTheme);
+	}, []);
 
 	return (
 		<div className="container mx-auto p-6 max-w-4xl">

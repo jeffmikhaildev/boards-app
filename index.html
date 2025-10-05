@@ -13,6 +13,29 @@
 	</head>
 	<body>
 		<div id="root"></div>
+		<script>
+			const themeKey = localStorage.getItem("theme") || "gold";
+			const themes = {
+				gold: { name: "Gold", primary: "#ffd700", primaryDark: "#b8860b", primaryLight: "#fff8b5" },
+				green: { name: "Green", primary: "#16a34a", primaryDark: "#166534", primaryLight: "#4ade80" },
+				red: { name: "Red", primary: "#ef4444", primaryDark: "#b91c1c", primaryLight: "#fca5a5" },
+				blue: { name: "Blue", primary: "#1e40af", primaryDark: "#1e3a8a", primaryLight: "#93c5fd" },
+				purple: { name: "Purple", primary: "#8b5cf6", primaryDark: "#5b21b6", primaryLight: "#c4b5fd" },
+				orange: { name: "Orange", primary: "#f59e0b", primaryDark: "#b45309", primaryLight: "#fcd34d" },
+				teal: { name: "Teal", primary: "#0d9488", primaryDark: "#115e59", primaryLight: "#5eead4" },
+				pink: { name: "Pink", primary: "#ec4899", primaryDark: "#9d174d", primaryLight: "#f9a8d4" },
+				cyan: { name: "Cyan", primary: "#06b6d4", primaryDark: "#0e7490", primaryLight: "#67e8f9" },
+				lime: { name: "Lime", primary: "#84cc16", primaryDark: "#65a30d", primaryLight: "#bef264" },
+				indigo: { name: "Indigo", primary: "#6366f1", primaryDark: "#4338ca", primaryLight: "#a5b4fc" },
+				rose: { name: "Rose", primary: "#f43f5e", primaryDark: "#be123c", primaryLight: "#fda4af" },
+			};
+			const theme = themes[themeKey];
+			if (theme) {
+				for (const [key, value] of Object.entries(theme)) {
+					document.documentElement.style.setProperty(`--color-${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`, value);
+				}
+			}
+		</script>
 		<script
 			type="module"
 			src="/src/main.tsx"></script>

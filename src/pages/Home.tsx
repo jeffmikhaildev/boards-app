@@ -187,7 +187,7 @@ const Home = () => {
 						</div>
 
 						<button
-							type="button"
+							type="submit"
 							className="w-full sm:w-auto px-8 py-3 rounded-xl bg-primary text-dark font-semibold 
 					shadow-lg hover:shadow-xl hover:bg-primaryLight hover:scale-105 transition transform duration-200">
 							Subscribe
