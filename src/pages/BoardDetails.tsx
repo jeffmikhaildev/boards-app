@@ -96,12 +96,16 @@ const BoardDetails = () => {
 					<h1 className="text-4xl font-bold text-primary text-center">{board.title}</h1>
 				</div>
 
-				<div className="flex flex-col gap-4 *:grow *:px-4 *:py-2 *:rounded-sm *:border *:border-primary *:flex *:gap-4 *:justify-center 500px:flex-row md:self-center">
-					<button onClick={() => setIsCreatingCard(true)}>
-						<Plus /> Add Card
+				<div className="flex flex-col gap-4 *:grow *:px-4 *:py-2 *:rounded-sm *:border *:flex *:gap-4 *:justify-center 500px:flex-row md:self-center">
+					<button
+						className="flex items-center gap-2 px-4 py-2 border-primary text-primary rounded-md shadow transition-transform duration-150 active:scale-95"
+						onClick={() => setIsCreatingCard(true)}>
+						<Plus /> Add
 					</button>
-					<button onClick={() => setShowDeleteBoardModal(true)}>
-						<Trash2 /> Delete Board
+					<button
+						className="flex items-center gap-2 px-4 py-2 border border-red-500 text-red-500 rounded-md transition-transform duration-150 active:scale-95"
+						onClick={() => setShowDeleteBoardModal(true)}>
+						<Trash2 /> Delete
 					</button>
 				</div>
 			</div>
@@ -185,12 +189,12 @@ const BoardDetails = () => {
 						</p>
 						<div className="flex justify-end gap-2 mt-4">
 							<button
-								className="px-4 py-2 rounded-md border border-primary text-primary hover:bg-primary hover:text-dark transition"
+								className="px-4 py-2 rounded-md border border-primary text-primary transition-transform duration-150 active:scale-95"
 								onClick={() => setShowDeleteBoardModal(false)}>
 								Cancel
 							</button>
 							<button
-								className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition"
+								className="px-4 py-2 border border-red-500 text-red-500 rounded-md transition-transform duration-150 active:scale-95"
 								onClick={confirmDeleteBoard}>
 								Delete
 							</button>

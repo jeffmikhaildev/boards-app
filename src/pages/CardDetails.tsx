@@ -72,13 +72,13 @@ const CardDetails = () => {
 				<div className="flex flex-row gap-3 *:grow">
 					<button
 						onClick={handleSave}
-						className="flex items-center gap-2 px-4 py-2 bg-primary text-dark rounded-md shadow hover:bg-primaryLight transition">
-						<Save /> Save Changes
+						className="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-md shadow transition-transform duration-150 active:scale-95">
+						<Save /> Save
 					</button>
 					<button
 						onClick={() => setShowDeleteModal(true)}
-						className="flex items-center gap-2 px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 transition">
-						<Trash2 /> Delete Card
+						className="flex items-center gap-2 px-4 py-2 border border-red-500 text-red-500 rounded-md transition-transform duration-150 active:scale-95">
+						<Trash2 /> Delete
 					</button>
 				</div>
 			</div>
@@ -167,12 +167,12 @@ const CardDetails = () => {
 						<div className="flex justify-end gap-3 mt-4">
 							<button
 								onClick={() => setShowDeleteModal(false)}
-								className="px-4 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:text-dark transition">
+								className="px-4 py-2 border border-primary text-primary rounded-md transition-transform duration-150 active:scale-95">
 								Cancel
 							</button>
 							<button
 								onClick={handleDeleteCard}
-								className="px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 transition">
+								className="px-4 py-2 border border-red-500 text-red-500 rounded-md transition-transform duration-150 active:scale-95">
 								Delete
 							</button>
 						</div>

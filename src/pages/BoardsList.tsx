@@ -86,11 +86,16 @@ const BoardsList = () => {
 					/>
 					<div className="flex gap-2 *:grow *:px-4 *:py-2 *:rounded-sm *:border *:border-primary">
 						<button
+							className="transition-transform duration-150 active:scale-95"
 							type="button"
 							onClick={() => setIsCreatingBoard(false)}>
 							Cancel
 						</button>
-						<button type="submit">Create</button>
+						<button
+							className="transition-transform duration-150 active:scale-95"
+							type="submit">
+							Create
+						</button>
 					</div>
 				</form>
 			)}
